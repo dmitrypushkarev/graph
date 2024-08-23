@@ -23,17 +23,17 @@ graph = [
     [6]             # 7
 ]
 
-visited = [False] * len(graph)
-start = 0
 
 
-def dfs(v):
-    visited[v] = True
-    for w in graph[v]:
-        if not visited[w]:  # посещён ли текущий сосед?
-            dfs(w)
+def dfs(start_vertex, graph):
+    visited = [False] * len(graph)
+
+    def _dfs(v):
+        visited[v] = True
+        for w in graph[v]:
+            if not visited[w]:  # посещён ли текущий сосед?
+                _dfs(w)
 
 
-dfs(start)
-
-print(visited)
+    _dfs(start_vertex)
+    return visited
